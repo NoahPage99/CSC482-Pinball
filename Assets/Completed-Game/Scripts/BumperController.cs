@@ -39,7 +39,7 @@ public class BumperController : MonoBehaviour {
             materials[0] = bumperOff;
             bHitLight = false;
         };
-        renderer.materials = materials;
+        //renderer.materials = materials;
     }
 
 
@@ -51,15 +51,15 @@ public class BumperController : MonoBehaviour {
             hitCount = hitCount + 1;
             //if bumper gets hit 3 times, it disappears (gets set inactive and isn't displayed in scene anymore)
 
-            // myCollision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            //myCollision.gameObject.GetComponent<MeshRenderer>().enabled = false;
             if (hitCount == 1)
             {
-                // this.gameObject.SetActive(false);
+                this.gameObject.SetActive(false);
                 this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-                this.gameObject.GetComponent<BoxCollider>().enabled = false;
+                //this.gameObject.GetComponent<BoxCollider>().enabled = false;
 
-                GameObject.Find("Cylinder").GetComponent<MeshRenderer>().enabled = true;
-                GameObject.Find("Cylinder").transform.position = this.gameObject.transform.position;
+                //GameObject.Find("Cylinder").GetComponent<MeshRenderer>().enabled = true;
+                //GameObject.Find("Cylinder").transform.position = this.gameObject.transform.position;
 
             }
             //trigger hit light (change material assigned to bumper object, so bumper "lights up"), reset hitlight timer 
