@@ -68,6 +68,50 @@ public class BumperController : MonoBehaviour {
 
             bumperSound.Play();
 
+            if(this.gameObject.tag =="SSD")
+            {
+                GameObject.Find("Pinball Table").GetComponent<PinballGame>().SSDLeft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().SSDLeft - 1;
+       
+            }
+             if(this.gameObject.tag =="CPU")
+            {
+                GameObject.Find("Pinball Table").GetComponent<PinballGame>().CPUleft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().CPUleft - 1;
+       
+            }
+             if(this.gameObject.tag =="MotherBoard")
+            {
+                GameObject.Find("Pinball Table").GetComponent<PinballGame>().MotherboardLeft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().MotherboardLeft - 1;
+       
+            }
+             if(this.gameObject.tag =="PowerSupply")
+            {
+                GameObject.Find("Pinball Table").GetComponent<PinballGame>().PowerSupplyLeft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().PowerSupplyLeft - 1;
+       
+            }
+             if(this.gameObject.tag =="Ram")
+            {
+                GameObject.Find("Pinball Table").GetComponent<PinballGame>().RamLeft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().RamLeft - 1;
+       
+            }
+
+             if(this.gameObject.tag =="Hard Drive")
+            {
+                GameObject.Find("Pinball Table").GetComponent<PinballGame>().HardDriveleft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().HardDriveleft - 1;
+       
+            }
+
+             if(this.gameObject.tag =="GPU")
+            {
+                GameObject.Find("Pinball Table").GetComponent<PinballGame>().Gpuleft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().Gpuleft - 1;
+       
+            }
+
+             if(this.gameObject.tag =="Case")
+            {
+                GameObject.Find("Pinball Table").GetComponent<PinballGame>().CaseLeft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().CaseLeft - 1;
+       
+            }
+
             //adds bumper score to the score talley being summed in the PinballGame script
             GameObject.Find("Pinball Table").GetComponent<PinballGame>().score = GameObject.Find("Pinball Table").GetComponent<PinballGame>().score + scoreIncrement;
         }

@@ -10,10 +10,26 @@ public class PinballGame : MonoBehaviour
     public Text highScoreText;
     public Text winText;
     public Text ballsText;
+    public Text CPU;
+    public Text Motherboard;
+    public Text Ram;
+    public Text SSD;
+    public Text HardDrive;
+    public Text GPU;
+    public Text Case;
+    public Text PowerSupply;
 
     public int maxBalls = 3;
     public int score = 0;
     private int highscore = 0;
+    public int CPUleft = 1;
+    public int MotherboardLeft = 1;
+    public int RamLeft = 1;
+    public int SSDLeft = 1;
+    public int HardDriveleft = 1;
+    public int Gpuleft = 1;
+    public int CaseLeft = 1;
+    public int PowerSupplyLeft = 1;
 
     public float plungerSpeed = 100;
 
@@ -96,6 +112,33 @@ public class PinballGame : MonoBehaviour
         scoreText.text = score.ToString();
 
         ballsText.text = ballsLeft.ToString();
+
+        CPU.text = "CPU: " + CPUleft.ToString();
+
+        Motherboard.text = "MotherBoard: " + MotherboardLeft.ToString();
+
+        Ram.text = "Ram: " + RamLeft.ToString();
+
+        SSD.text = "SSD: " +  SSDLeft.ToString();
+
+        HardDrive.text = "Hard Drive: " + HardDriveleft.ToString();
+
+        GPU.text = "GPU: " + Gpuleft.ToString();
+
+        Case.text = "Case: " + CaseLeft.ToString();
+
+        PowerSupply.text = "Power Supply: " + PowerSupplyLeft.ToString(); 
+
+
+
+        // private int CPUleft = 0;
+        // private int MotherboardLeft = 0;
+        // private int RamLeft = 0;
+        // private int SSDLeft = 0;
+        // private int HardDriveleft = 0;
+        // private int Gpuleft = 0;
+        // private int GPULeft = 0;
+        // private int PowerSupplyLeft = 0;
 
         // Check if our 'count' is equal to or exceeded 12
         if (gameOver) winText.text = "Game Over";

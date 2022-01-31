@@ -7,6 +7,14 @@ TagManager:
   - Ball
   - Bumper
   - cylinder
+  - SSD
+  - CPU
+  - MotherBoard
+  - Ram
+  - PowerSupply
+  - Case
+  - GPU
+  - Hard Drive
   layers:
   - Default
   - TransparentFX
