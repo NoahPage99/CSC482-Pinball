@@ -8,18 +8,22 @@ public class BumperController : MonoBehaviour {
     public AudioSource bumperSound;
     public Material bumperOff;
     public Material bumperOn;
+    private bool gpuNeeded;
 
     MeshRenderer renderer;
 
     public int hitCount = 0;
     bool bHitLight = false;
     float hitLightTimer = 0;
+    int scoreMultiplier;
     
 
     private void Start()
     {
         renderer = gameObject.GetComponent<MeshRenderer>();
         bumperSound = GetComponent<AudioSource>();
+        gpuNeeded = true;
+        scoreMultiplier = 1;
     }
 
     // Before rendering each frame..
@@ -99,12 +103,33 @@ public class BumperController : MonoBehaviour {
                 GameObject.Find("Pinball Table").GetComponent<PinballGame>().HardDriveleft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().HardDriveleft - 1;
        
             }
-
+            
              if(this.gameObject.tag =="GPU")
             {
-                GameObject.Find("Pinball Table").GetComponent<PinballGame>().Gpuleft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().Gpuleft - 1;
+                if(GameObject.Find("Pinball Table").GetComponent<PinballGame>().Gpuleft != 0)
+                {
+                    GameObject.Find("Pinball Table").GetComponent<PinballGame>().Gpuleft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().Gpuleft - 1;
+                }
+                else
+                {
+                    scoreIncrement = -100;
+                }
+        
+            }
+
+            if(this.gameObject.tag =="SuperGPU")
+            {
+                 if(GameObject.Find("Pinball Table").GetComponent<PinballGame>().Gpuleft != 0){
+                    GameObject.Find("Pinball Table").GetComponent<PinballGame>().Gpuleft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().Gpuleft - 1;
+                    scoreMultiplier = scoreMultiplier * 2;
+                 }
+                  else
+                {
+                    scoreIncrement = -100;
+                }            
        
             }
+            
 
              if(this.gameObject.tag =="Case")
             {
@@ -113,7 +138,7 @@ public class BumperController : MonoBehaviour {
             }
 
             //adds bumper score to the score talley being summed in the PinballGame script
-            GameObject.Find("Pinball Table").GetComponent<PinballGame>().score = GameObject.Find("Pinball Table").GetComponent<PinballGame>().score + scoreIncrement;
+            GameObject.Find("Pinball Table").GetComponent<PinballGame>().score = GameObject.Find("Pinball Table").GetComponent<PinballGame>().score + scoreIncrement * scoreMultiplier;
         }
     }
 }	

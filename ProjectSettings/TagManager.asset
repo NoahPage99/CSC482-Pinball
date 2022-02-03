@@ -15,6 +15,7 @@ TagManager:
   - Case
   - GPU
   - Hard Drive
+  - SuperGPU
   layers:
   - Default
   - TransparentFX

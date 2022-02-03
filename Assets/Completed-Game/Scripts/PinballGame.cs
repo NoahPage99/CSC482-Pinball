@@ -51,6 +51,7 @@ public class PinballGame : MonoBehaviour
 
     private GameObject maincam;
     private GameObject puzzleCamera;
+    
 
     // At the start of the game..
     void Start()
