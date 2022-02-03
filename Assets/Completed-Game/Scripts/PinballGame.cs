@@ -18,6 +18,7 @@ public class PinballGame : MonoBehaviour
     public Text GPU;
     public Text Case;
     public Text PowerSupply;
+    public Text Multiplier;
 
     public int maxBalls = 3;
     public int score = 0;
@@ -30,6 +31,7 @@ public class PinballGame : MonoBehaviour
     public int Gpuleft = 1;
     public int CaseLeft = 1;
     public int PowerSupplyLeft = 1;
+    public int scoreMultiplier = 1;
 
     public float plungerSpeed = 100;
 
@@ -129,6 +131,8 @@ public class PinballGame : MonoBehaviour
         Case.text = "Case: " + CaseLeft.ToString();
 
         PowerSupply.text = "Power Supply: " + PowerSupplyLeft.ToString(); 
+
+        Multiplier.text = scoreMultiplier.ToString();
 
 
 
