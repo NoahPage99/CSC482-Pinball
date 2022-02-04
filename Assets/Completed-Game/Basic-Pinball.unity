@@ -7331,6 +7331,8 @@ GameObject:
   - component: {fileID: 5934736104086093565}
   - component: {fileID: 4367823709282766245}
   - component: {fileID: 2160539204723123142}
+  - component: {fileID: 525090719900744744}
+  - component: {fileID: 525090719900744745}
   m_Layer: 0
   m_Name: Coin
   m_TagString: coin
@@ -7338,6 +7340,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &525090719900744744
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525090719900744742}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.019620359, y: 0.019620353, z: 0.0050386493}
+  m_Center: {x: -0.0000000018626451, y: -2.3283064e-10, z: 0}
+--- !u!114 &525090719900744745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525090719900744742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b919a2dba586d422dba13dd5c6501fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreIncrement: 100
+  bumperSound: {fileID: 0}
+  bumperOff: {fileID: 0}
+  bumperOn: {fileID: 0}
+  hitCount: 0
 --- !u!4 &543450652581545805
 Transform:
   m_ObjectHideFlags: 0
@@ -7860,8 +7892,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525090719900744742}
-  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: 0, w: 0}
-  m_LocalPosition: {x: -0.22, y: 1.28, z: 19.58}
+  m_LocalRotation: {x: 0.70710677, y: 0.70710677, z: 0, w: 0}
+  m_LocalPosition: {x: -0.22, y: 0.736, z: 0.76}
   m_LocalScale: {x: 47.001667, y: 47.001667, z: 38.143745}
   m_Children: []
   m_Father: {fileID: 543450652581545805}
