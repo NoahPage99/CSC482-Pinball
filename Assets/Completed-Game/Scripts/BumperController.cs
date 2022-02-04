@@ -9,6 +9,7 @@ public class BumperController : MonoBehaviour {
     public Material bumperOff;
     public Material bumperOn;
     private bool gpuNeeded;
+    private GameObject ball;
 
     MeshRenderer renderer;
 
@@ -24,6 +25,7 @@ public class BumperController : MonoBehaviour {
         bumperSound = GetComponent<AudioSource>();
         gpuNeeded = true;
         scoreMultiplier = 1;
+        ball = GameObject.Find("Ball");
     }
 
     // Before rendering each frame..
@@ -133,8 +135,24 @@ public class BumperController : MonoBehaviour {
        
             }
 
+             if(this.gameObject.tag =="Bump")
+            {
+                
+                Rigidbody rb = ball.GetComponent<Rigidbody>();
+                var opp = -rb.velocity;
+                rb.AddForce(opp);
+       
+            }
+
             //adds bumper score to the score talley being summed in the PinballGame script
-            GameObject.Find("Pinball Table").GetComponent<PinballGame>().score = GameObject.Find("Pinball Table").GetComponent<PinballGame>().score + scoreIncrement *  GameObject.Find("Pinball Table").GetComponent<PinballGame>().scoreMultiplier;
+            if(this.gameObject.tag == "coin"){
+                GameObject.Find("Pinball Table").GetComponent<PinballGame>().score = GameObject.Find("Pinball Table").GetComponent<PinballGame>().score + 1000 *  GameObject.Find("Pinball Table").GetComponent<PinballGame>().scoreMultiplier;
+
+            }
+            else
+            {
+                GameObject.Find("Pinball Table").GetComponent<PinballGame>().score = GameObject.Find("Pinball Table").GetComponent<PinballGame>().score + scoreIncrement *  GameObject.Find("Pinball Table").GetComponent<PinballGame>().scoreMultiplier;
+            }
         }
     }
 }	

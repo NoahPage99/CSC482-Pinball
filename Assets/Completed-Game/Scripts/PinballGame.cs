@@ -77,6 +77,12 @@ public class PinballGame : MonoBehaviour
         audioPlayer.Play(); 
     }
 
+    private int partChecker()
+    {
+        int temp = CPUleft + MotherboardLeft + RamLeft + SSDLeft + HardDriveleft + Gpuleft + CaseLeft + PowerSupplyLeft;
+        return temp; 
+    }
+
     private void Update()
     {
 
@@ -147,8 +153,7 @@ public class PinballGame : MonoBehaviour
 
         // Check if our 'count' is equal to or exceeded 12
         if (gameOver) winText.text = "Game Over";
-        else if (score == 1500) winText.text = "Superstar!";
-        else if (score >= 2100) winText.text = "You won!";
+        else if (partChecker() == 0) winText.text = "You Win";
         else winText.text = "";
 
         if (score > highscore) highscore = score;
