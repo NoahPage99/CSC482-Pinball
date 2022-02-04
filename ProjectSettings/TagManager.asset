@@ -17,6 +17,7 @@ TagManager:
   - Hard Drive
   - SuperGPU
   - speed
+  - directionalSpeed
   layers:
   - Default
   - TransparentFX
