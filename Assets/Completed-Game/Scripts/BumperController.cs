@@ -31,8 +31,12 @@ public class BumperController : MonoBehaviour {
     // Before rendering each frame..
     void Update () 
 	{
-         //continuously rotates cuvbe
-		transform.Rotate (new Vector3 (15, 30, 45) * Time.deltaTime);
+        if(this.gameObject.tag == "coin"){
+             //continuously rotates cuvbe
+            transform.Rotate (new Vector3 (180, 0, 0) * Time.deltaTime);
+        } else {
+    		transform.Rotate (new Vector3 (15, 30, 45) * Time.deltaTime);
+        }
 
         // assign material depending on whether bumper hit or not
         Material[] materials = renderer.materials;
@@ -72,8 +76,10 @@ public class BumperController : MonoBehaviour {
             bHitLight = true;
             hitLightTimer = 0;
 
-            bumperSound.Play();
-
+            if (bumperSound){
+                bumperSound.Play();
+            }
+            
             if(this.gameObject.tag =="SSD")
             {
                 GameObject.Find("Pinball Table").GetComponent<PinballGame>().SSDLeft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().SSDLeft - 1;

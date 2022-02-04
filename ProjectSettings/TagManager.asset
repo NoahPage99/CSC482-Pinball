@@ -18,6 +18,7 @@ TagManager:
   - SuperGPU
   - speed
   - directionalSpeed
+  - coin
   layers:
   - Default
   - TransparentFX
