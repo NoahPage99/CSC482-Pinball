@@ -19,6 +19,7 @@ TagManager:
   - speed
   - directionalSpeed
   - coin
+  - Bump
   layers:
   - Default
   - TransparentFX

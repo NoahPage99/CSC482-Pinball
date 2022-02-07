@@ -7,6 +7,8 @@ public class DirectionalSpeedBoostScript : MonoBehaviour
 
     public float addedSpeed = 1000;
     public Vector3 direction = new Vector3(0.0f, 0.0f, 1.0f);
+    public AudioSource audioPlayer;
+    public AudioClip speedClip;
 
     private GameObject ball;
     
@@ -14,6 +16,7 @@ public class DirectionalSpeedBoostScript : MonoBehaviour
     void Start()
     {
         ball = GameObject.Find("Ball");
+        audioPlayer = GetComponent<AudioSource>();
         //ball.SetActive(false);
     }
 
@@ -23,6 +26,7 @@ public class DirectionalSpeedBoostScript : MonoBehaviour
             if (this.gameObject.tag == "directionalSpeed"){
                 Rigidbody rb = ball.GetComponent<Rigidbody>();
                 rb.AddForce(direction * addedSpeed);
+                audioPlayer.PlayOneShot(speedClip);
             }
         }
     }

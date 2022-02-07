@@ -10,6 +10,7 @@ public class BumperController : MonoBehaviour {
     public Material bumperOn;
     private bool gpuNeeded;
     private GameObject ball;
+    public AudioClip bumperClip;
 
     MeshRenderer renderer;
 
@@ -34,7 +35,7 @@ public class BumperController : MonoBehaviour {
         if(this.gameObject.tag == "coin"){
              //continuously rotates cuvbe
             transform.Rotate (new Vector3 (180, 0, 0) * Time.deltaTime);
-        } else {
+        } else if(this.gameObject.tag != "Bump") {
     		transform.Rotate (new Vector3 (15, 30, 45) * Time.deltaTime);
         }
 
@@ -57,12 +58,15 @@ public class BumperController : MonoBehaviour {
     {
         if (myCollision.gameObject.tag == "Ball")
         {
+            if (bumperSound){
+                bumperSound.PlayOneShot(bumperClip);
+            }
             // each time bumper is hit, hitCount increases by one
             hitCount = hitCount + 1;
             //if bumper gets hit 3 times, it disappears (gets set inactive and isn't displayed in scene anymore)
 
             //myCollision.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            if (hitCount == 1)
+            if (hitCount == 1 && this.gameObject.tag != "Bump")
             {
                 this.gameObject.SetActive(false);
                 this.gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -76,9 +80,7 @@ public class BumperController : MonoBehaviour {
             bHitLight = true;
             hitLightTimer = 0;
 
-            if (bumperSound){
-                bumperSound.Play();
-            }
+            
             
             if(this.gameObject.tag =="SSD")
             {
@@ -145,17 +147,19 @@ public class BumperController : MonoBehaviour {
             {
                 
                 Rigidbody rb = ball.GetComponent<Rigidbody>();
-                var opp = -rb.velocity;
-                rb.AddForce(opp);
+                rb.AddExplosionForce(800, transform.position,1);
+                print("test");
+                // var opp = -rb.velocity;
+                // rb.AddForce(-opp);
        
             }
 
             //adds bumper score to the score talley being summed in the PinballGame script
-            if(this.gameObject.tag == "coin"){
+            if(this.gameObject.tag == "coin" ){
                 GameObject.Find("Pinball Table").GetComponent<PinballGame>().score = GameObject.Find("Pinball Table").GetComponent<PinballGame>().score + 1000 *  GameObject.Find("Pinball Table").GetComponent<PinballGame>().scoreMultiplier;
 
             }
-            else
+            else if (this.gameObject.tag != "Bump")
             {
                 GameObject.Find("Pinball Table").GetComponent<PinballGame>().score = GameObject.Find("Pinball Table").GetComponent<PinballGame>().score + scoreIncrement *  GameObject.Find("Pinball Table").GetComponent<PinballGame>().scoreMultiplier;
             }
