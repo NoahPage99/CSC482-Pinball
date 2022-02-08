@@ -147,8 +147,14 @@ public class BumperController : MonoBehaviour {
             {
                 
                 Rigidbody rb = ball.GetComponent<Rigidbody>();
-                rb.AddExplosionForce(800, transform.position,1);
-                print("test");
+                //rb.AddExplosionForce(800, transform.position,1);
+
+                Vector3 noY = new Vector3(1,0,1);
+                Vector3 direction = Vector3.Scale((rb.transform.position - this.gameObject.transform.position) , noY).normalized;
+                rb.AddForce(direction * 2000);
+
+
+                //print("test");
                 // var opp = -rb.velocity;
                 // rb.AddForce(-opp);
        
