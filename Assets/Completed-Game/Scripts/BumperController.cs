@@ -56,45 +56,38 @@ public class BumperController : MonoBehaviour {
 
     void OnCollisionEnter(Collision myCollision)
     {
+         
         if (myCollision.gameObject.tag == "Ball")
         {
-            if (bumperSound){
-                bumperSound.PlayOneShot(bumperClip);
-            }
+            
+               
+            
             // each time bumper is hit, hitCount increases by one
             hitCount = hitCount + 1;
             //if bumper gets hit 3 times, it disappears (gets set inactive and isn't displayed in scene anymore)
 
             //myCollision.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            if (hitCount == 1 && this.gameObject.tag != "Bump")
-            {
-                this.gameObject.SetActive(false);
-                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-                //this.gameObject.GetComponent<BoxCollider>().enabled = false;
-
-                //GameObject.Find("Cylinder").GetComponent<MeshRenderer>().enabled = true;
-                //GameObject.Find("Cylinder").transform.position = this.gameObject.transform.position;
-
-            }
-            //trigger hit light (change material assigned to bumper object, so bumper "lights up"), reset hitlight timer 
-            bHitLight = true;
-            hitLightTimer = 0;
-
+           
+            
+                bumperSound.PlayOneShot(bumperClip);
             
             
             if(this.gameObject.tag =="SSD")
             {
                 GameObject.Find("Pinball Table").GetComponent<PinballGame>().SSDLeft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().SSDLeft - 1;
+                
        
             }
              if(this.gameObject.tag =="CPU")
             {
                 GameObject.Find("Pinball Table").GetComponent<PinballGame>().CPUleft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().CPUleft - 1;
+               
        
             }
              if(this.gameObject.tag =="MotherBoard")
             {
                 GameObject.Find("Pinball Table").GetComponent<PinballGame>().MotherboardLeft = GameObject.Find("Pinball Table").GetComponent<PinballGame>().MotherboardLeft - 1;
+                
        
             }
              if(this.gameObject.tag =="PowerSupply")
@@ -169,6 +162,20 @@ public class BumperController : MonoBehaviour {
             {
                 GameObject.Find("Pinball Table").GetComponent<PinballGame>().score = GameObject.Find("Pinball Table").GetComponent<PinballGame>().score + scoreIncrement *  GameObject.Find("Pinball Table").GetComponent<PinballGame>().scoreMultiplier;
             }
+
+             if (hitCount == 1 && this.gameObject.tag != "Bump")
+            {
+                this.gameObject.SetActive(false);
+                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                //this.gameObject.GetComponent<BoxCollider>().enabled = false;
+
+                //GameObject.Find("Cylinder").GetComponent<MeshRenderer>().enabled = true;
+                //GameObject.Find("Cylinder").transform.position = this.gameObject.transform.position;
+
+            }
+            //trigger hit light (change material assigned to bumper object, so bumper "lights up"), reset hitlight timer 
+            bHitLight = true;
+            hitLightTimer = 0;
         }
     }
 }	
