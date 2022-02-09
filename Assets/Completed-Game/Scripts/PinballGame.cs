@@ -39,6 +39,7 @@ public class PinballGame : MonoBehaviour
     public AudioClip plungerClip;
     public AudioClip soundtrackClip;
     public AudioClip gameoverClip;
+    public AudioClip ballLostClip;
 
     public KeyCode newGameKey;
     public KeyCode plungerKey;
@@ -63,7 +64,6 @@ public class PinballGame : MonoBehaviour
         ball = GameObject.Find("Ball");
         maincam = GameObject.FindGameObjectWithTag("MainCamera");
         puzzleCamera = GameObject.Find("PuzzleCamera");
-
 
         puzzleCamera.SetActive(false);
 
@@ -93,6 +93,7 @@ public class PinballGame : MonoBehaviour
         // detect ball going past flippers into "drain"
         if ((ball.activeSelf == true) && (ball.transform.position.z < drain.transform.position.z))
         {
+            audioPlayer.PlayOneShot(ballLostClip);
             ball.SetActive(false);
         }
 
@@ -189,10 +190,11 @@ public class PinballGame : MonoBehaviour
             rb.AddForce(movement * plungerSpeed);
 
             // set ball position to location of plunger
+            rb.velocity = Vector3.zero;
             ball.transform.position = plunger.transform.position;
             ballsLeft = ballsLeft - 1;
 
-            audioPlayer.PlayOneShot(plungerClip);
+            audioPlayer.PlayOneShot(plungerClip, 2.0f);
         }
     }
 

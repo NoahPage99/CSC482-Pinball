@@ -20,13 +20,13 @@ public class DirectionalSpeedBoostScript : MonoBehaviour
         //ball.SetActive(false);
     }
 
-    void OnCollisionEnter(Collision myCollision)
+    void OnTriggerEnter(Collider myCollision)
     {
         if(myCollision.gameObject.tag == "Ball") {
             if (this.gameObject.tag == "directionalSpeed"){
                 Rigidbody rb = ball.GetComponent<Rigidbody>();
                 rb.AddForce(direction * addedSpeed);
-                audioPlayer.PlayOneShot(speedClip);
+                audioPlayer.PlayOneShot(speedClip, 0.3f);
             }
         }
     }
