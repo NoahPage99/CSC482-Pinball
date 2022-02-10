@@ -58,11 +58,12 @@ public class BumperController : MonoBehaviour {
         {
             //bumperSound.PlayOneShot(bumperClip);
 
-            if(this.gameObject.tag == "coin" ){
+            if(this.gameObject.tag == "coin" && this.gameObject.GetComponent<MeshRenderer>().enabled){
                 GameObject.Find("Pinball Table").GetComponent<PinballGame>().score = GameObject.Find("Pinball Table").GetComponent<PinballGame>().score + 50 *  GameObject.Find("Pinball Table").GetComponent<PinballGame>().scoreMultiplier;
-                this.gameObject.SetActive(false);
+                //this.gameObject.SetActive(false);
                 this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            } else{
+                this.gameObject.GetComponent<BoxCollider>().enabled = false;
+            } else if(this.gameObject.tag != "coin"){
                 // computer part:
 
                 if(this.gameObject.tag =="SSD")
@@ -131,8 +132,9 @@ public class BumperController : MonoBehaviour {
 
                 GameObject.Find("Pinball Table").GetComponent<PinballGame>().score = GameObject.Find("Pinball Table").GetComponent<PinballGame>().score + scoreIncrement *  GameObject.Find("Pinball Table").GetComponent<PinballGame>().scoreMultiplier;
 
-                this.gameObject.SetActive(false);
+                
                 this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                this.gameObject.GetComponent<BoxCollider>().enabled = false;
 
             }
         }

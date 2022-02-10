@@ -165,18 +165,121 @@ public class PinballGame : MonoBehaviour
     {
         ballsLeft = 3;
         gameOver = false;
+        winText.text = "";
         ball.SetActive(false);
         score = 0;
 
-        GameObject[] bumpers;
-        bumpers = GameObject.FindGameObjectsWithTag("Bumper");
+        GameObject[] coins;
+        GameObject[] temp;
+        coins = GameObject.FindGameObjectsWithTag("coin");
 
-        foreach (GameObject bumper in bumpers)
+        foreach (GameObject c in coins)
         {
-            bumper.GetComponent<MeshRenderer>().enabled = true;
-            bumper.GetComponent<BoxCollider>().enabled = true;
-            bumper.GetComponent<BumperController>().hitCount = 0;
+            
+            c.GetComponent<MeshRenderer>().enabled = true;
+            c.GetComponent<BoxCollider>().enabled = true;
+            c.GetComponent<BumperController>().hitCount = 0;
         }
+        
+        temp = GameObject.FindGameObjectsWithTag("SSD");
+
+        foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("CPU");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("MotherBoard");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("PowerSupply");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("Ram");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("Hard Drive");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("GPU");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("SuperGPU");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("Case");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+
+        
+        SSDLeft = 1;
+        CPUleft = 1;
+        MotherboardLeft = 1;
+        PowerSupplyLeft = 1;
+        HardDriveleft = 1;
+        CaseLeft = 1;
+        RamLeft = 1;
+        Gpuleft = 1;
     }
 
     void Plunger()

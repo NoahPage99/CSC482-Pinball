@@ -40,7 +40,7 @@ public class BallController : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "coin"){
             audioPlayer.PlayOneShot(collectCoinClip);
-        } else {
+        } else{
             // another pc part
             audioPlayer.PlayOneShot(collectPartClip);
         }
