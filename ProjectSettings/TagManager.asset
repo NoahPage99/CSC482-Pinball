@@ -17,6 +17,9 @@ TagManager:
   - Hard Drive
   - SuperGPU
   - speed
+  - directionalSpeed
+  - coin
+  - Bump
   layers:
   - Default
   - TransparentFX

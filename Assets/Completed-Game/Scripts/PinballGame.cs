@@ -39,6 +39,7 @@ public class PinballGame : MonoBehaviour
     public AudioClip plungerClip;
     public AudioClip soundtrackClip;
     public AudioClip gameoverClip;
+    public AudioClip ballLostClip;
 
     public KeyCode newGameKey;
     public KeyCode plungerKey;
@@ -64,7 +65,6 @@ public class PinballGame : MonoBehaviour
         maincam = GameObject.FindGameObjectWithTag("MainCamera");
         puzzleCamera = GameObject.Find("PuzzleCamera");
 
-
         puzzleCamera.SetActive(false);
 
         ball.SetActive(false);
@@ -77,6 +77,12 @@ public class PinballGame : MonoBehaviour
         audioPlayer.Play(); 
     }
 
+    private int partChecker()
+    {
+        int temp = CPUleft + MotherboardLeft + RamLeft + SSDLeft + HardDriveleft + Gpuleft + CaseLeft + PowerSupplyLeft;
+        return temp; 
+    }
+
     private void Update()
     {
 
@@ -87,6 +93,7 @@ public class PinballGame : MonoBehaviour
         // detect ball going past flippers into "drain"
         if ((ball.activeSelf == true) && (ball.transform.position.z < drain.transform.position.z))
         {
+            audioPlayer.PlayOneShot(ballLostClip);
             ball.SetActive(false);
         }
 
@@ -147,8 +154,7 @@ public class PinballGame : MonoBehaviour
 
         // Check if our 'count' is equal to or exceeded 12
         if (gameOver) winText.text = "Game Over";
-        else if (score == 1500) winText.text = "Superstar!";
-        else if (score >= 2100) winText.text = "You won!";
+        else if (partChecker() == 0) winText.text = "You Win";
         else winText.text = "";
 
         if (score > highscore) highscore = score;
@@ -159,18 +165,121 @@ public class PinballGame : MonoBehaviour
     {
         ballsLeft = 3;
         gameOver = false;
+        winText.text = "";
         ball.SetActive(false);
         score = 0;
 
-        GameObject[] bumpers;
-        bumpers = GameObject.FindGameObjectsWithTag("Bumper");
+        GameObject[] coins;
+        GameObject[] temp;
+        coins = GameObject.FindGameObjectsWithTag("coin");
 
-        foreach (GameObject bumper in bumpers)
+        foreach (GameObject c in coins)
         {
-            bumper.GetComponent<MeshRenderer>().enabled = true;
-            bumper.GetComponent<BoxCollider>().enabled = true;
-            bumper.GetComponent<BumperController>().hitCount = 0;
+            
+            c.GetComponent<MeshRenderer>().enabled = true;
+            c.GetComponent<BoxCollider>().enabled = true;
+            c.GetComponent<BumperController>().hitCount = 0;
         }
+        
+        temp = GameObject.FindGameObjectsWithTag("SSD");
+
+        foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("CPU");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("MotherBoard");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("PowerSupply");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("Ram");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("Hard Drive");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("GPU");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("SuperGPU");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+        
+        temp = GameObject.FindGameObjectsWithTag("Case");
+
+         foreach (GameObject t in temp)
+        {
+            
+            t.GetComponent<MeshRenderer>().enabled = true;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.GetComponent<BumperController>().hitCount = 0;
+        }
+
+        
+        SSDLeft = 1;
+        CPUleft = 1;
+        MotherboardLeft = 1;
+        PowerSupplyLeft = 1;
+        HardDriveleft = 1;
+        CaseLeft = 1;
+        RamLeft = 1;
+        Gpuleft = 1;
     }
 
     void Plunger()
@@ -184,10 +293,11 @@ public class PinballGame : MonoBehaviour
             rb.AddForce(movement * plungerSpeed);
 
             // set ball position to location of plunger
+            rb.velocity = Vector3.zero;
             ball.transform.position = plunger.transform.position;
             ballsLeft = ballsLeft - 1;
 
-            audioPlayer.PlayOneShot(plungerClip);
+            audioPlayer.PlayOneShot(plungerClip, 2.0f);
         }
     }
 
